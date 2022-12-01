@@ -15,6 +15,7 @@ class Activity {
     std::string name;
     Location location;
     People *participants;
+    const unsigned id;
 };
 
 

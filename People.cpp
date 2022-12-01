@@ -20,15 +20,15 @@ void People::setName(const std::string &input_name) {
 }
 
 void People::setEmail(const std::string &input_email) {
-    std::regex email_regex ("/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/");
+    std::regex email_regex (R"(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)");
     if (std::regex_match(input_email, email_regex)) this->email = input_email;
-    else throw;
+    else throw_with_nested("It's not a valid email");
 }
 
 void People::setPhoneNumber(const std::string &input_phone_number) {
-    std::regex phone_number_regex ("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$");
+    std::regex phone_number_regex (R"(^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$)");
     if (std::regex_match(input_phone_number, phone_number_regex)) this->phone_number = input_phone_number;
-    else throw ;
+    else throw_with_nested("It's not a valid phone_number") ;
 }
 
 void People::setProfession(const std::string &input_profession) {
@@ -38,11 +38,11 @@ void People::setProfession(const std::string &input_profession) {
 void People::setType(const std::string &input_type) {
     std::string valid_types[4] = {"Regular", "Business", "VIP", ""};
     bool valid = false;
-    for(int i=0;i<4;i++){
-        if (input_type.compare(valid_types[i]) == 0) valid = true;
+    for(auto & valid_type : valid_types){
+        if (input_type == valid_type) valid = true;
     }
     if (!valid) this->type = input_type;
-    else throw ;
+    else throw_with_nested("It's not a valid type") ;
 }
 
 void People::setAge(unsigned input_age) {
