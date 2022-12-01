@@ -5,7 +5,7 @@
 #ifndef PROJECT_OOP_PEOPLE_H
 #define PROJECT_OOP_PEOPLE_H
 #include "string"
-
+// to do virtualizare, exceptions
 class People {
     unsigned id;
     std::string name;
@@ -13,13 +13,11 @@ class People {
     std::string phone_number;
     unsigned age;
     std::string profession;
-    std::string type; // regular, business , vip (only for participants)
+    std::string type; // regular, business , vip (only for participants), employee for employees
 public:
     People(const std::string& input_name, const std::string& input_email, const std::string& input_phone_number,
            const std::string& input_profession, const std::string& input_type, unsigned input_age, unsigned input_id);
-
-    People();
-
+    People(const std::string& file_path);
 //    Setter
     void setId(unsigned input_id);
     void setName(const std::string& input_name);
@@ -36,6 +34,8 @@ public:
     std::string getType();
     unsigned getAge() const;
     unsigned getId() const;
+//    Operators
+    friend std::ostream& operator<<(std::ostream& output,People& l);
 };
 
 
