@@ -1,11 +1,13 @@
 #include <iostream>
-#include "Location.cpp"
 #include "DateTime.cpp"
-#include "People.cpp"
+#include "Location.cpp"
+#include "People.h"
+#include "Activity.cpp"
+//#include "Project.h"
 using namespace std;
 
 int main() {
-    People p(R"(C:\Users\Daniel\work_space\Proiect_POO\people.txt)");
-    cout<<p;
+    Location l1("test", "Bucuresti", "Bucuresti","Test", 1, 1);
+    cout<<l1;
     return 0;
 }

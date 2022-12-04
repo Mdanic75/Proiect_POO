@@ -4,15 +4,18 @@
 
 #include "People.h"
 #include "regex"
+
 People::People(const std::string &input_name, const std::string &input_email, const std::string &input_phone_number,
-               const std::string &input_profession, const std::string &input_type, unsigned input_age, unsigned input_id) {
+               const std::string &input_profession, const std::string &input_type, unsigned input_age) {
     this->setName(input_name);
     this->setEmail(input_email);
     this->setPhoneNumber(input_phone_number);
     this->setProfession(input_profession);
     this->setType(input_type);
     this->setAge(input_age);
-    this->setId(input_id);
+    this->setId();
+    ofstream file_output(R"(C:\Users\Daniel\work_space\Proiect_POO\people.txt)", std::ios::app);
+    file_output<<*this;
 }
 
 void People::setName(const std::string &input_name) {
@@ -73,32 +76,40 @@ unsigned People::getAge() const {
     return this->age;
 }
 
-void People::setId(unsigned int input_id) {
-    this->id = input_id;
+void People::setId() {
+    unsigned min=0, i;
+    string test;
+    ifstream file_input(R"(C:\Users\Daniel\work_space\Proiect_POO\people.txt)");
+    while(!file_input.eof()){
+        file_input>>i>>test>>test>>test>>test>>test>>test;
+        if (i>min) min=i;
+    }
+    this->id = min+1;
 }
 
 unsigned People::getId() const {
     return this->id;
 }
 
-People::People(const string& file_path) {
+People::People(const string& file_path, unsigned id) {
     ifstream file_input(file_path);
-    cout<<file_path;
     unsigned input_id, input_age;
     string input_name, input_email, input_phone_number, input_profession, input_type;
-    file_input>>input_id>>input_name>>input_email>>input_phone_number>>input_age>>input_profession>>input_type;
+    while(input_id!=id and !file_input.eof()){
+        file_input>>input_id>>input_name>>input_email>>input_phone_number>>input_age>>input_profession>>input_type;
+    }
     this->setName(input_name);
-    cout<<input_email;
     this->setEmail(input_email);
     this->setPhoneNumber(input_phone_number);
     this->setProfession(input_profession);
     this->setType(input_type);
     this->setAge(input_age);
-    this->setId(input_id);
+    this->id = input_id;
 }
 std::ostream &operator<<(ostream &output,People &l) {
-    output<<"Id:"<<l.getId()<<" ,Name:"<<l.getName()<<" ,Email:"<<l.getEmail()<<" ,PhoneNumber:"<<l.getPhoneNumber()<<
+    if(typeid(cout).name()==typeid(output).name()) output<<endl<<"Id:"<<l.getId()<<" ,Name:"<<l.getName()<<" ,Email:"<<l.getEmail()<<" ,PhoneNumber:"<<l.getPhoneNumber()<<
           " ,Age:"<<l.getAge()<<" ,Profession:"<<l.getProfession()<<" ,Type:"<<l.getType();
+    else output<<endl<<l.getId()<<" "<<l.getName()<<" "<<l.getEmail()<<" "<<l.getPhoneNumber()<<" "<<l.getAge()<<" "<<l.getProfession()<<" "<<l.getType();
     return output;
 }
 

@@ -3,6 +3,7 @@
 //
 #include "string"
 #include "DateTime.h"
+#include "stdlib.h"
 using namespace std;
 DateTime::DateTime(unsigned int input_year, unsigned int input_month, unsigned int input_day, unsigned int input_hour,
                    unsigned int input_minute, unsigned int input_second) {
@@ -64,4 +65,19 @@ string DateTime::get_date_time_UTC() {
     string time_utc = year_string + "-" + month_string + "-" + day_string + "T" + hour_string + ":" + minute_string +
             ":" + second_string;
     return time_utc;
+}
+
+DateTime::DateTime(const string& date_time_utc) {
+    string year_str = date_time_utc.substr(0,4);
+    string month_str = date_time_utc.substr(5,2);
+    string day_str = date_time_utc.substr(8,2);
+    string hour_str = date_time_utc.substr(11,2);
+    string minute_str = date_time_utc.substr(14,2);
+    string second_str = date_time_utc.substr(17,2);
+    this->setYear(stoi(year_str));
+    this->setMonth(stoi(month_str));
+    this->setDay(stoi(day_str));
+    this->setHour(stoi(hour_str));
+    this->setMinute(stoi(minute_str));
+    this->setSecond(stoi(second_str));
 }

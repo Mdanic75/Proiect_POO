@@ -1,1 +1,4 @@
 1 Daniel daniel.babaian@gmail.com 0735085897 10 DEv regular
+2 Daniel daniel.babaian@teilor.ro 0735085897 10 DEV regular
+3 Daniel daniel.babaian@teilor.ro 0735085897 12 DEV regular
+4 Daniel daniel.babaian@teilor.ro 0735085897 13 DEV regular

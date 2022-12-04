@@ -7,7 +7,6 @@
 #include "string"
 #include "DateTime.h"
 #include "Location.h"
-#include "Employee.h"
 #include "People.h"
 #include "Activity.h"
 
@@ -17,7 +16,6 @@ class Project {
     DateTime end_date;
     Activity *activities;
     People *participants;
-    Employee *employees;
 };
 
 

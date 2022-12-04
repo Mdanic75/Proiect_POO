@@ -16,6 +16,8 @@ class DateTime {
 public:
     DateTime(unsigned input_year, unsigned input_month, unsigned input_day, unsigned input_hour, unsigned input_minute,
              unsigned input_second);
+    DateTime(const std::string& date_time_utc);
+    DateTime(){};
 //    Setter
 void setYear(unsigned input_year);
 void setMonth(unsigned input_month);

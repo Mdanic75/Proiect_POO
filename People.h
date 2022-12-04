@@ -16,10 +16,11 @@ class People {
     std::string type; // regular, business , vip (only for participants), employee for employees
 public:
     People(const std::string& input_name, const std::string& input_email, const std::string& input_phone_number,
-           const std::string& input_profession, const std::string& input_type, unsigned input_age, unsigned input_id);
-    People(const std::string& file_path);
+           const std::string& input_profession, const std::string& input_type, unsigned input_age);
+    People(const std::string& file_path, unsigned id);
+    People(){};
 //    Setter
-    void setId(unsigned input_id);
+    void setId();
     void setName(const std::string& input_name);
     void setEmail(const std::string& input_email);
     void setPhoneNumber(const std::string& input_phone_number);
