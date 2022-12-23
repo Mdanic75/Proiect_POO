@@ -2,10 +2,11 @@
 // Created by Daniel on 11/10/2022.
 //
 #include "string"
+#include "Base.h"
 #ifndef PROJECT_OOP_LOCATION_H
 #define PROJECT_OOP_LOCATION_H
 
-class Location {
+class Location: public Base{
     std::string name{};
     std::string locality{};
     std::string city{};
@@ -14,11 +15,12 @@ class Location {
     int max_people = 0;
     unsigned id = 0;
 public:
-//    Constructors
+    static std::string file_name;
+    //    Constructors
     Location(const std::string& input_name, const std::string& input_locality, const std::string& input_city,
              const std::string& input_street, int input_street_number, int input_max_people);
-    Location(const std::string& file_path, unsigned input_id);
-    Location(){};
+    Location(unsigned input_id);
+    Location(){};;
 //    Setters
     void setName(const std::string& input_name);
     void setLocality(const std::string& input_locality);

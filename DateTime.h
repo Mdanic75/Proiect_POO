@@ -33,7 +33,7 @@ unsigned getHour();
 unsigned getMinute();
 unsigned getSecond();
 //    Methods
-std::string get_date_time_UTC();
+    std::string get_date_time_UTC();
 };
 
 

@@ -5,8 +5,9 @@
 #ifndef PROJECT_OOP_PEOPLE_H
 #define PROJECT_OOP_PEOPLE_H
 #include "string"
+#include "Base.h"
 // to do virtualizare, exceptions
-class People {
+class People: Base {
     unsigned id;
     std::string name;
     std::string email;
@@ -15,6 +16,7 @@ class People {
     std::string profession;
     std::string type; // regular, business , vip (only for participants), employee for employees
 public:
+    static std::string file_name;
     People(const std::string& input_name, const std::string& input_email, const std::string& input_phone_number,
            const std::string& input_profession, const std::string& input_type, unsigned input_age);
     People(const std::string& file_path, unsigned id);

@@ -77,14 +77,7 @@ unsigned People::getAge() const {
 }
 
 void People::setId() {
-    unsigned min=0, i;
-    string test;
-    ifstream file_input(R"(C:\Users\Daniel\work_space\Proiect_POO\people.txt)");
-    while(!file_input.eof()){
-        file_input>>i>>test>>test>>test>>test>>test>>test;
-        if (i>min) min=i;
-    }
-    this->id = min+1;
+    this->id = People::find_last_id(People::file_name);
 }
 
 unsigned People::getId() const {

@@ -62,8 +62,8 @@ std::string Location::getLocality() {
     return this->locality;
 }
 
-Location::Location(const string &file_path, unsigned id) {
-    ifstream locations_file(file_path, ios::in);
+Location::Location(unsigned id) {
+    ifstream locations_file(Location::file_name, ios::in);
     string input_name, input_locality, input_city, input_street;
     int input_street_number, input_max_people;
     unsigned input_id = 0;
@@ -81,15 +81,7 @@ Location::Location(const string &file_path, unsigned id) {
 }
 
 void Location::setId() {
-    unsigned min=0, i;
-    string test;
-    ifstream file_input(R"(C:\Users\Daniel\work_space\Proiect_POO\locations.txt)");
-    while(!file_input.eof()){
-        file_input>>i>>test>>test>>test>>test>>test>>test;
-        if (i>min) min=i;
-    }
-    this->id = min+1;
-//    this->id = input_id;
+    this->id = Location::find_last_id(Location::file_name);
 }
 
 unsigned Location::getId() const {
@@ -103,6 +95,7 @@ std::ostream &operator<<(ostream &output, Location &l) {
     " "<<l.getMax_people();
     return output;
 }
+
 
 
 

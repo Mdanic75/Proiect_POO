@@ -55,7 +55,7 @@ unsigned DateTime::getMinute() {
 unsigned DateTime::getSecond() {
     return this->second;
 }
-string DateTime::get_date_time_UTC() {
+string DateTime::get_date_time_UTC()  {
     string year_string = to_string(this->getYear());
     string month_string = to_string(this->getMonth());
     string day_string = to_string(this->getDay());
