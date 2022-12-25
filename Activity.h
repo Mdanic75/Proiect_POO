@@ -10,8 +10,9 @@
 #include "DateTime.h"
 #include "Location.h"
 #include "People.cpp"
+#include "Base.h"
 
-class Activity {
+class Activity: Base {
 private:
     DateTime start_date;
     DateTime end_date;
@@ -20,7 +21,8 @@ private:
     unsigned participants_nr;
     unsigned id=0;
 public:
-    string activity_file_path = R"(C:\Users\Daniel\work_space\Proiect_POO\activity.txt)";
+    void setId();
+    static string file_path;
     Activity(const std::string &input_start_date, const std::string &input_end_date, const std::string &input_name,
              unsigned *participants_id, unsigned input_participants_number);
     Activity(){};

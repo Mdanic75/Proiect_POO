@@ -16,9 +16,12 @@ Activity::Activity(const string &input_start_date, const string &input_end_date,
     this->setName(input_name);
     this->participants_nr = input_participants_number;
     this->setParticipants(participantsId, input_participants_number);
+    this->setId();
+    ofstream file(Activity::file_path, ios::app);
+    file<<*this;
 }
 Activity::Activity(unsigned id) {
-    ifstream activity_file(activity_file_path, ios::in);
+    ifstream activity_file(file_path, ios::in);
     string input_start_date, input_end_date, input_name;
     unsigned input_participants_number, *participantsId, input_id = 0;
     while(id != input_id){
@@ -65,13 +68,29 @@ void Activity::setName(const string &input_name) {
 void Activity::setParticipants(unsigned *participants_id, unsigned participants_number) {
     this->participants = new People[participants_number];
     for(int i=0;i<participants_number;i++){
-        this->participants[i] = People(R"(C:\Users\Daniel\work_space\Proiect_POO\people.txt)", participants_id[i]);
+        this->participants[i] = People(participants_id[i]);
     }
 }
 
 ostream &operator<<(ostream &os, Activity &activity) {
-    os << "start_date: " << activity.getStarDate().get_date_time_UTC() << " end_date: " << activity.getEndDate().get_date_time_UTC() << " name: " << activity.getName()
-       << " participants: " << activity.participants << " participants_nr: " << activity.participants_nr << " id: "
-       << activity.id << " activity_file_path: " << activity.activity_file_path;
+    if(typeid(cout).name()==typeid(os).name()) {
+        os << "start_date: " << activity.getStarDate().get_date_time_UTC() << " end_date: "
+           << activity.getEndDate().get_date_time_UTC() << " name: " << activity.getName()
+           << " participants_nr: " << activity.participants_nr << " id: "
+           << activity.id<<endl<<"Participants: ";
+        for (int i = 0; i < activity.participants_nr; i++)
+            os << activity.participants[i].getName()<< " ";
+    }
+    else{
+        os << activity.id<< " " << activity.getStarDate().get_date_time_UTC()<< " " << activity.getEndDate().get_date_time_UTC()<< " " << activity.getName()
+        << " "  <<  activity.participants_nr << " ";
+        for (int i=0; i<activity.participants_nr; i++)
+        os<< activity.participants[i].getId()<<" ";
+    }
     return os;
+
+}
+
+void Activity::setId() {
+    this->id = Activity::find_last_id(Activity::file_path);
 }

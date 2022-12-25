@@ -42,10 +42,10 @@ void People::setType(const std::string &input_type) {
     std::string valid_types[4] = {"Regular", "Business", "VIP", "employee"};
     bool valid = false;
     for(auto & valid_type : valid_types){
-        if (input_type == valid_type) valid = true;
+        if (input_type.compare(valid_type)) valid = true;
     }
-    if (!valid) this->type = input_type;
-    else throw_with_nested("It's not a valid type") ;
+    if (valid) this->type = input_type;
+    else throw;
 }
 
 void People::setAge(unsigned input_age) {
@@ -84,8 +84,8 @@ unsigned People::getId() const {
     return this->id;
 }
 
-People::People(const string& file_path, unsigned id) {
-    ifstream file_input(file_path);
+People::People(unsigned id) {
+    ifstream file_input(People::file_name);
     unsigned input_id, input_age;
     string input_name, input_email, input_phone_number, input_profession, input_type;
     while(input_id!=id and !file_input.eof()){
