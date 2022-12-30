@@ -26,6 +26,10 @@ public:
     Activity(const std::string &input_start_date, const std::string &input_end_date, const std::string &input_name,
              unsigned *participants_id, unsigned input_participants_number);
     Activity(){};
+    ~Activity(){
+//        delete this->participants;
+    };
+    Activity(Activity &activity);
     Activity(unsigned input_id);
     DateTime getStarDate() const;
 
@@ -43,7 +47,17 @@ public:
 
 
     void setParticipants(unsigned *participants_id, unsigned participants_number);
+//    Operators
     friend ostream &operator<<(ostream &os, Activity &activity);
+    friend istream &operator>>(istream &os, Activity &activity);
+    Activity &operator+(const People& p1);
+    Activity &operator-(unsigned part_nr);
+    Activity &operator=(const Activity& a);
+    bool operator==(const Activity& a) const;
+    explicit operator int() const; // returneaza nr de participanti
+    unsigned operator%(const std::string& pass_type); //returneaza nr de participanti cu biletul de tipul
+    //    Methods
+    void update_in_file();
 
 };
 

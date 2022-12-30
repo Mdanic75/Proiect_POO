@@ -58,10 +58,15 @@ unsigned DateTime::getSecond() {
 string DateTime::get_date_time_UTC()  {
     string year_string = to_string(this->getYear());
     string month_string = to_string(this->getMonth());
+    if (month_string.length() == 1) month_string = "0" + month_string;
     string day_string = to_string(this->getDay());
+    if (day_string.length() == 1) day_string = "0" + day_string;
     string hour_string = to_string(this->getHour());
+    if (hour_string.length() == 1) hour_string = "0" + hour_string;
     string minute_string = to_string(this->getMinute());
+    if (minute_string.length() == 1) minute_string = "0" + minute_string;
     string second_string = to_string(this->getSecond());
+    if (second_string.length() == 1) second_string = "0" + second_string;
     string time_utc = year_string + "-" + month_string + "-" + day_string + "T" + hour_string + ":" + minute_string +
             ":" + second_string;
     return time_utc;
