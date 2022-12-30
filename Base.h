@@ -13,6 +13,7 @@ public:
     Base(){};
     static unsigned find_last_id(const std::string& file_name);
     static void delete_line(const std::string& file_name, unsigned object_id);
+    virtual std::string return_file_path(){return "";};
 };
 
 

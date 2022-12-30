@@ -180,3 +180,11 @@ unsigned Activity::operator%(const string& pass_type) {
     return nr;
 }
 
+unsigned int Activity::getId() const {
+    return id;
+}
+
+string Activity::return_file_path() {
+    return Activity::file_path;
+}
+

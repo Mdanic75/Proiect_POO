@@ -13,7 +13,6 @@
 #include "Base.h"
 
 class Activity: Base {
-private:
     DateTime start_date;
     DateTime end_date;
     std::string name;
@@ -45,12 +44,13 @@ public:
 
     void setName(const std::string &input_name);
 
-
+    unsigned int getId() const;
     void setParticipants(unsigned *participants_id, unsigned participants_number);
 //    Operators
     friend ostream &operator<<(ostream &os, Activity &activity);
     friend istream &operator>>(istream &os, Activity &activity);
-    Activity &operator+(const People& p1);
+
+    virtual Activity &operator+(const People& p1);
     Activity &operator-(unsigned part_nr);
     Activity &operator=(const Activity& a);
     bool operator==(const Activity& a) const;
@@ -58,7 +58,7 @@ public:
     unsigned operator%(const std::string& pass_type); //returneaza nr de participanti cu biletul de tipul
     //    Methods
     void update_in_file();
-
+    string return_file_path() override;
 };
 
 
