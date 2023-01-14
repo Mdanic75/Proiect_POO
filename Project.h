@@ -5,17 +5,19 @@
 #ifndef PROJECT_OOP_PROJECT_H
 #define PROJECT_OOP_PROJECT_H
 #include "string"
-#include "DateTime.h"
-#include "Location.h"
-#include "People.h"
-#include "Activity.h"
+#include "Base.h"
 
-class Project {
-    std::string name;
-    DateTime start_date;
-    DateTime end_date;
-    Activity *activities;
-    People *participants;
+template <typename T>
+class Project{
+public:
+    T* element_list;
+    unsigned obj_number;
+    Project(unsigned obj_num, T* list);
+    Project();
+    void append_object(T new_object);
+    void delete_object(unsigned index);
+    friend std::ostream& operator<<(std::ostream& output, Project<T>& objects);
+    friend std::istream& operator>>(std::istream& output, Project<T>& objects);
 };
 
 

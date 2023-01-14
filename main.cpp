@@ -6,6 +6,7 @@
 #include "Activity.cpp"
 #include "Base.cpp"
 #include "ActivityOffline.h"
+#include "Project.cpp"
 using namespace std;
 
 string Location::file_name = R"(C:\Users\Daniel\work_space\Proiect_POO\locations.txt)";
@@ -37,5 +38,14 @@ int main() {
     ActivityOffline a1(l_by_id, weather_condition, catering, 1);
     cout<<a1<<endl;
     cout<<a1.return_file_path();
+////    Template
+    auto * activity_list  = new Activity[2];
+    activity_list[0] = a_by_id;
+    activity_list[1] = a_generated;
+    Project<Activity>a_list(2, activity_list);
+    a_list.append_object(a_generated);
+    cout<<a_list.obj_number;
+    a_list.delete_object(3);
+    cout<<a_list.obj_number;
     return 0;
 }
