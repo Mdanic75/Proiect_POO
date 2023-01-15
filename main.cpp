@@ -7,6 +7,9 @@
 #include "Base.cpp"
 #include "ActivityOffline.h"
 #include "Project.cpp"
+#include "vector"
+#include "set"
+#include "queue"
 using namespace std;
 
 string Location::file_name = R"(C:\Users\Daniel\work_space\Proiect_POO\locations.txt)";
@@ -44,8 +47,19 @@ int main() {
     activity_list[1] = a_generated;
     Project<Activity>a_list(2, activity_list);
     a_list.append_object(a_generated);
-    cout<<a_list.obj_number;
+    cout<<a_list.obj_number<<endl;
     a_list.delete_object(3);
-    cout<<a_list.obj_number;
+    cout<<a_list.obj_number<<endl;
+////    STL
+    vector<Activity> secvential;
+    set<Activity> asociativ;
+    queue<Activity> adaptiv;
+    int i=4;
+    for(i=1; i <= 5; i++) {
+        Activity read_a(i);
+//        secvential.push_back(read_a);
+//        asociativ.insert(read_a);
+//        adaptiv.push(read_a);
+    }
     return 0;
 }

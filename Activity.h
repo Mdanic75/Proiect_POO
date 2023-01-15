@@ -16,17 +16,17 @@ class Activity: Base {
     DateTime start_date;
     DateTime end_date;
     std::string name;
-    People *participants;
-    unsigned participants_nr;
+    People *participants{};
+    unsigned participants_nr{};
     unsigned id=0;
 public:
     void setId();
     static string file_path;
     Activity(const std::string &input_start_date, const std::string &input_end_date, const std::string &input_name,
              unsigned *participants_id, unsigned input_participants_number);
-    Activity(){};
+    Activity()= default;
     ~Activity(){
-//        delete this->participants;
+        delete []this->participants;
     };
     Activity(Activity &activity);
     Activity(unsigned input_id);
