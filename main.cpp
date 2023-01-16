@@ -51,15 +51,23 @@ int main() {
     a_list.delete_object(3);
     cout<<a_list.obj_number<<endl;
 ////    STL
-    vector<Activity> secvential;
-    set<Activity> asociativ;
-    queue<Activity> adaptiv;
-    int i=4;
+    vector<string> secvential;
+    set<string> asociativ;
+    queue<string> adaptiv;
+    int i;
     for(i=1; i <= 5; i++) {
         Activity read_a(i);
-//        secvential.push_back(read_a);
-//        asociativ.insert(read_a);
-//        adaptiv.push(read_a);
+        secvential.push_back(read_a.getName());
+        asociativ.insert(read_a.getName());
+        adaptiv.push(read_a.getName());
     }
+    for(auto j=secvential.begin();j!=secvential.end(); j++)
+        cout<<*j<<" ";
+
+    cout<<endl<<adaptiv.size();
+    cout<<endl<<adaptiv.back();
+    cout<<endl<<adaptiv.front()<<endl;
+    for(auto j=asociativ.begin();j!=asociativ.end(); j++)
+        cout<<*j<<" ";
     return 0;
 }
